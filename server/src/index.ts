@@ -1,6 +1,6 @@
 import { GraphQLServer, PubSub } from "graphql-yoga";
 
-import typeDefs from "./api.graphql";
+import typeDefs from "./schema.graphql";
 
 /** Query
 {

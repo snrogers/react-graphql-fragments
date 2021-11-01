@@ -28,3 +28,11 @@ type Query {
   # hello: String
   orders: [Order!]!
 }
+
+type Mutation {
+  nothing: ID!
+}
+
+type Subscription {
+  nothing: ID!
+}
