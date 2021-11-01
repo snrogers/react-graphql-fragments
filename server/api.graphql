@@ -1,0 +1,30 @@
+type OrderItem {
+  id: ID!
+  name: String!
+  amount: Int!
+  cost: Float!
+}
+
+type Table {
+  id: ID!
+  name: String!
+  people: [Person]!
+}
+
+type Person {
+  id: ID!
+  name: String!
+  age: Float!
+  orderItems: [OrderItem!]!
+}
+
+type Order {
+  id: ID!
+  table: Table!
+  createdAt: String!
+}
+
+type Query {
+  # hello: String
+  orders: [Order!]!
+}
