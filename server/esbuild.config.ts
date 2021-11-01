@@ -1,9 +1,9 @@
 import * as esbuild from 'esbuild'
 import graphqlLoaderPlugin from '@luckycatfactory/esbuild-graphql-loader'
 
-esbuild.build({
+const buildOptions: esbuild.BuildOptions = {
   entryPoints: ['./src/index.ts'],
-  outfile: '../dist/server.js',
+  outfile: './dist/server.js',
   bundle: true,
   minify: process.env.NODE_ENV === 'production',
   platform: 'node',
@@ -13,5 +13,7 @@ esbuild.build({
   plugins: [
     graphqlLoaderPlugin()
   ],
-  watch: true
-}).catch(() => process.exit(1))
+  watch: !!process.env.WATCH
+}
+
+esbuild.build(buildOptions).catch(() => process.exit(1))

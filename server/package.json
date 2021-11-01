@@ -5,16 +5,16 @@
   "author": "Brian Bugh",
   "license": "MIT",
   "scripts": {
-    "build": "ts-node esbuild.config.ts"
+    "build": "yarn tsc --noEmit && ts-node esbuild.config.ts"
   },
   "dependencies": {
+    "graphql": "^15.0.0",
     "graphql-tag": "^2.12.5",
     "graphql-yoga": "^1.18.3"
   },
   "devDependencies": {
     "@luckycatfactory/esbuild-graphql-loader": "^3.7.0",
     "esbuild": "^0.13.12",
-    "esbuild-node-externals": "^1.3.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   }
