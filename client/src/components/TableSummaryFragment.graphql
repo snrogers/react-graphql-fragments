@@ -1,0 +1,7 @@
+fragment TableSummaryFragment on Table {
+  id
+  name
+  persons {
+    ...PersonSummaryFragment
+  }
+}

@@ -21,7 +21,7 @@ type Person {
 type Order {
   id: ID!
   table: Table!
-  createdAt: String!
+  createdAt: Int!
 }
 
 type Query {
