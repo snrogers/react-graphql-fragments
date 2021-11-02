@@ -10,7 +10,7 @@ import typeDefs from "./schema.graphql";
     table {
       id
       name
-      people {
+      persons {
         id
         name
         age
@@ -33,7 +33,7 @@ const orderData = [
     table: {
       id: "689d4a4c-b8a2-502a-a62c-791221cba669",
       name: "Table #54",
-      people: [
+      persons: [
         {
           id: "43d1061c-f984-5d3b-8609-f9dabb939dd1",
           name: "Alvin Duncan",
@@ -56,13 +56,13 @@ const orderData = [
               id: "9378f8cd-dbbe-57c7-83e6-cc3d7f2ebbcd",
               name: "Cheese Sampler",
               amount: 1,
-              cost: 29.10,
+              cost: 29.1,
             },
             {
               id: "e3e5c76c-3573-505d-b0e5-ecb41c4e9c25",
               name: "Guinness",
               amount: 1,
-              cost: 8.50,
+              cost: 8.5,
             },
           ],
         },

@@ -8,7 +8,7 @@ type OrderItem {
 type Table {
   id: ID!
   name: String!
-  people: [Person]!
+  persons: [Person!]!
 }
 
 type Person {
@@ -25,7 +25,6 @@ type Order {
 }
 
 type Query {
-  # hello: String
   orders: [Order!]!
 }
 
