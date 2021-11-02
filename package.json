@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "types": "cd client && yarn types:watch",
+    "client": "cd client && yarn build && yarn serve",
+    "server": "cd server && yarn serve",
+    "serve": "concurrently 'npm:client' 'npm:server' 'npm:types' -c blue.bold,magenta,cyan"
+  },
+  "dependencies": {
+    "concurrently": "^6.3.0"
+  }
+}

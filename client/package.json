@@ -1,11 +1,13 @@
 {
+  "private": true,
   "name": "client",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "types": "graphql-codegen --config codegen.yml"
+    "types": "graphql-codegen",
+    "types:watch": "yarn types --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",

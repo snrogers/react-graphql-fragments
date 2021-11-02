@@ -93,4 +93,7 @@ const resolvers = {
 
 const pubsub = new PubSub();
 const server = new GraphQLServer({ typeDefs, resolvers, context: { pubsub } });
-server.start(() => console.log("Server is running on http://localhost:4000"));
+server.start(() => {
+  console.log("GraphQL Server is running on http://localhost:4000")
+  console.log("Visit the URL in the browser for the GraphQL explorer.")
+});

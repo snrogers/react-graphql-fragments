@@ -1,11 +1,13 @@
 {
+  "private": true,
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Brian Bugh",
   "license": "MIT",
   "scripts": {
-    "build": "yarn tsc --noEmit && ts-node esbuild.config.ts"
+    "build": "yarn tsc --noEmit && ts-node esbuild.config.ts",
+    "serve": "yarn build && node dist/server.js"
   },
   "resolutions": {
     "graphql": "14.3.1"
