@@ -1,40 +1,32 @@
 overwrite: true
 # schema: "http://localhost:4000"
 schema: "../server/src/schema.graphql"
-documents:
-  - "./**/*.graphql"
-  - src/**/!(*.d).{ts,tsx}
 generates:
   src/generated/graphql.tsx:
     plugins:
       - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
     config:
       dedupeOperationSuffix: true
+
   src/generated/graphql.schema.json:
     plugins:
       - "introspection"
+
 # ----------------------------------------------------------------- #
 # Co-located Code
 # ----------------------------------------------------------------- #
   src/:
-    documents: "./**/*.graphql"
+    documents: "**/*.graphql"
     preset: near-operation-file
     presetConfig:
       extension: .graphql.generated.ts
-      baseTypesPath: 'src/generated/graphql.tsx'
+      baseTypesPath: 'generated/graphql.tsx'
     plugins:
       - 'typescript-operations'
       - 'typescript-react-apollo'
     config:
       dedupeOperationSuffix: true
-      skipTypename: false # NOTE: TN-APP uses `true` Standardize?
-      typesPrefix: I
       withComponent: false
       withHOC: false
       withHooks: true
-      scalars:
-        ISO8601DateTime: string
-        JsonCompatible: JsonCompatible
 

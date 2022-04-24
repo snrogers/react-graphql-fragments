@@ -1,0 +1,5 @@
+query OrdersViewQuery {
+  orders {
+    id
+  }
+}

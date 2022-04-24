@@ -1,32 +1,30 @@
-import { gql } from "@apollo/client";
 import { FC } from "react";
-import { OrdersListOrderFragment } from "../generated/graphql";
+import { gql } from "@apollo/client";
+import { pluck } from "ramda";
+
+import ErrorState from "../ErrorState";
+import LoadingState from "../LoadingState";
 import OrdersListItem from "./OrdersListItem";
+import { useOrdersListQuery } from "./OrdersList.graphql.generated";
 
-export const ORDERS_LIST_ORDER_FRAGMENT = gql`
-  fragment OrdersListOrderFragment on Order {
-    id
-    createdAt
-    table {
-      ...TableSummaryFragment
-    }
-  }
-`;
+const OrdersListQuery: FC = () => {
+  const { loading, error, data } = useOrdersListQuery();
 
-interface OrdersListProps {
-  orderIds: OrdersListOrderFragment[];
-}
+  if (loading) return <LoadingState />;
+  if (error || !data) return <ErrorState />;
 
-const OrdersList: FC<OrdersListProps> = ({ orders }) => {
+  const { orders } = data;
+  const orderIds = pluck("id", orders);
+
   return (
     <ul>
-      {orders.map((order) => (
-        <li>
-          <OrdersListItem order={order} />
+      {orderIds.map((orderId) => (
+        <li key={orderId}>
+          <OrdersListItem orderId={orderId} />
         </li>
       ))}
     </ul>
   );
 };
 
-export default OrdersList;
+export default OrdersListQuery;

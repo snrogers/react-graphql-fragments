@@ -1,0 +1,11 @@
+fragment OrdersListItemOrder on Order {
+  id
+  createdAt
+  table { id }
+}
+
+query OrdersListItemQuery($orderId: ID!) {
+  orderById(id: $orderId) {
+    ...OrdersListItemOrder
+  }
+}

@@ -1,8 +1,6 @@
 import { FC } from "react";
-import { TableSummaryFragment } from "../../../generated/graphql";
-import PersonSummary from "../../PersonSummary";
-
-// Fragment is in ./TableSummaryFragment.graphql
+import PersonSummary from "../PersonSummary";
+import { TableSummaryFragment } from './TableSummary.graphql.generated'
 
 export interface TableSummaryProps {
   table: TableSummaryFragment;
@@ -18,7 +16,7 @@ const TableSummary: FC<TableSummaryProps> = ({ table }) => {
         <ol>
           {table.persons.map((person) => (
             <li>
-              <PersonSummary person={person} />
+              <PersonSummary personId={person.id} />
             </li>
           ))}
         </ol>

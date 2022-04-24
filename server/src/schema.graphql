@@ -26,8 +26,9 @@ type Order {
 
 type Query {
   orders: [Order!]!
-  orderItemById: OrderItem
-  personById: Person
+  orderById(id: ID!): Order
+  orderItemById(id: ID!): OrderItem
+  personById(id: ID!): Person
 }
 
 type Mutation {

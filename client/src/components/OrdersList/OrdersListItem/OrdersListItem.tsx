@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { OrdersListOrderFragment } from "../generated/graphql";
 import TableSummary from "./TableSummary";
+import { OrdersListItemOrderFragment } from './OrdersListItem.graphql.generated'
 
 interface OrdersListItemProps {
-  order: OrdersListOrderFragment;
+  order: OrdersListItemOrderFragment;
 }
 
 const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
@@ -19,3 +19,4 @@ const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
 };
 
 export default OrdersListItem;
+

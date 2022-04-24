@@ -1,0 +1,14 @@
+fragment PersonSummaryFragment on Person {
+  id
+  name
+  age
+  orderItems {
+    ...OrderItemSummaryFragment
+  }
+}
+
+query PersonSummaryQuery($personId: ID! {
+  personById(id: $personId) {
+    ...PersonSummaryFragment
+  }
+}

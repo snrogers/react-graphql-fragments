@@ -1,0 +1,5 @@
+query OrdersListQuery {
+  orders {
+    id
+  }
+}

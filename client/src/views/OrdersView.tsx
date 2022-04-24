@@ -1,23 +1,13 @@
-import { gql } from "@apollo/client";
 import { FC } from "react";
+import { gql } from "@apollo/client";
+import { pluck } from "ramda";
 
 import OrdersList from "../components/OrdersList";
-import { OrdersViewQuery, useOrdersViewQuery } from "../generated/graphql";
-
-export const ORDERS_VIEW_QUERY = gql`
-  query OrdersView {
-    orders {
-      ...OrdersListOrderFragment
-    }
-  }
-`;
+import { useOrdersViewQuery } from "./OrdersView.graphql.generated";
+import LoadingState from "../components/LoadingState";
+import ErrorState from "../components/ErrorState";
 
 const OrdersView: FC = () => {
-  const { loading, error, data } = useOrdersViewQuery();
-
-  if (loading) return <p>Loading...</p>;
-  if (error || !data) return <p>Error :(</p>;
-
   return (
     <div>
       <div>
@@ -26,7 +16,7 @@ const OrdersView: FC = () => {
         </a>
       </div>
       <h1>Orders</h1>
-      <OrdersList orders={data.orders} />
+      <OrdersList />
     </div>
   );
 };

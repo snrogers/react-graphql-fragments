@@ -1,0 +1,13 @@
+  fragment OrderItemSummaryFragment on OrderItem {
+    id
+    name
+    amount
+    cost
+  }
+
+query OrderItemSummaryQuery($orderItemId: ID!) {
+  orderItemById(id: $orderItemId) {
+    ...OrderItemSummaryFragment
+  }
+}
+
