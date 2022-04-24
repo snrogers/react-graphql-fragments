@@ -1,4 +1,5 @@
 import { GraphQLServer, PubSub } from "graphql-yoga";
+import { prop } from "ramda";
 
 import typeDefs from "./schema.graphql";
 
@@ -74,6 +75,17 @@ const orderData = [
 const resolvers = {
   Query: {
     orders: () => orderData,
+    orderItemById: (id: string) =>
+      orderData
+        .flatMap(prop("table"))
+        .flatMap(prop("persons"))
+        .flatMap(prop("orderItems"))
+        .find((oi) => oi.id === id),
+    personById: (id: string) =>
+      orderData
+        .flatMap(prop("table"))
+        .flatMap(prop("persons"))
+        .find((p) => p.id === id),
   },
   // Mutation: {
   //   sendMessage: (_, { sender, channel, text }, { pubsub }) => {
@@ -94,6 +106,6 @@ const resolvers = {
 const pubsub = new PubSub();
 const server = new GraphQLServer({ typeDefs, resolvers, context: { pubsub } });
 server.start(() => {
-  console.log("GraphQL Server is running on http://localhost:4000")
-  console.log("Visit the URL in the browser for the GraphQL explorer.")
+  console.log("GraphQL Server is running on http://localhost:4000");
+  console.log("Visit the URL in the browser for the GraphQL explorer.");
 });

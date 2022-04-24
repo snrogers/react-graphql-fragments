@@ -14,7 +14,7 @@ export const ORDERS_LIST_ORDER_FRAGMENT = gql`
 `;
 
 interface OrdersListProps {
-  orders: OrdersListOrderFragment[];
+  orderIds: OrdersListOrderFragment[];
 }
 
 const OrdersList: FC<OrdersListProps> = ({ orders }) => {

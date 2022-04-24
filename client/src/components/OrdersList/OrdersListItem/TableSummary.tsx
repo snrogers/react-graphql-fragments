@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { TableSummaryFragment } from "../generated/graphql";
-import PersonSummary from "./PersonSummary";
+import { TableSummaryFragment } from "../../../generated/graphql";
+import PersonSummary from "../../PersonSummary";
 
 // Fragment is in ./TableSummaryFragment.graphql
 

@@ -1,14 +1,16 @@
 import { FC } from "react";
 import { OrdersListOrderFragment } from "../generated/graphql";
-import TableSummary from "./OrdersList/OrdersListItem/TableSummary";
+import TableSummary from "./TableSummary";
 
-interface OrdersListItemProps {
-  order: OrdersListOrderFragment;
+interface OrdersListItemQueryProps {
+  orderId: string;
 }
 
-const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
+const OrdersListItemQuery: FC<OrdersListItemQueryProps> = (props) => {
+  const { orderId } = props
+
   return (
-    <div key={order.id} style={{ border: '1px black solid' }}>
+    <div style={{ border: '1px black solid' }}>
       <div>
         <a href={`/orders/${order.id}`}>{order.id}</a>{" "}
         <span>({new Date(order.createdAt * 1000).toString()})</span>
@@ -18,4 +20,4 @@ const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
   );
 };
 
-export default OrdersListItem;
+export default OrdersListItemQuery;

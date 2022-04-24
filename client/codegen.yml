@@ -15,3 +15,26 @@ generates:
   src/generated/graphql.schema.json:
     plugins:
       - "introspection"
+# ----------------------------------------------------------------- #
+# Co-located Code
+# ----------------------------------------------------------------- #
+  src/:
+    documents: "./**/*.graphql"
+    preset: near-operation-file
+    presetConfig:
+      extension: .graphql.generated.ts
+      baseTypesPath: 'src/generated/graphql.tsx'
+    plugins:
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      dedupeOperationSuffix: true
+      skipTypename: false # NOTE: TN-APP uses `true` Standardize?
+      typesPrefix: I
+      withComponent: false
+      withHOC: false
+      withHooks: true
+      scalars:
+        ISO8601DateTime: string
+        JsonCompatible: JsonCompatible
+

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { OrdersListOrderFragment } from "../generated/graphql";
-import TableSummary from "./OrdersList/OrdersListItem/TableSummary";
+import TableSummary from "./TableSummary";
 
 interface OrdersListItemProps {
   order: OrdersListOrderFragment;

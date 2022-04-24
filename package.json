@@ -1,8 +1,11 @@
 {
   "private": true,
   "scripts": {
+    "install:client": "cd client && yarn",
+    "install:server": "cd server && yarn",
+    "postinstall": "concurrently 'npm:install:client' 'npm:install:server' -c blue.bold,magenta,cyan",
     "types": "cd client && yarn types:watch",
-    "client": "cd client && yarn build && yarn serve",
+    "client": "cd client && yarn dev",
     "server": "cd server && yarn serve",
     "serve": "concurrently 'npm:client' 'npm:server' 'npm:types' -c blue.bold,magenta,cyan"
   },

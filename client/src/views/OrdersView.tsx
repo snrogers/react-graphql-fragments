@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import { FC } from "react";
+
 import OrdersList from "../components/OrdersList";
 import { OrdersViewQuery, useOrdersViewQuery } from "../generated/graphql";
 

@@ -15,9 +15,11 @@
   "dependencies": {
     "graphql": "14.3.1",
     "graphql-tag": "^2.12.5",
-    "graphql-yoga": "^1.18.3"
+    "graphql-yoga": "^1.18.3",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
+    "@types/ramda": "^0.28.11",
     "@luckycatfactory/esbuild-graphql-loader": "^3.7.0",
     "esbuild": "^0.13.12",
     "ts-node": "^10.4.0",
