@@ -19,7 +19,7 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-// import "./App.css";
+import "./App.css";
 import { IonContent, IonPage } from "@ionic/react";
 
 function App() {
