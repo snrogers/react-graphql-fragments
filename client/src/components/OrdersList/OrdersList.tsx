@@ -9,13 +9,11 @@ type OrdersListProps = {
 const OrdersList: FC<OrdersListProps> = ({ orderIds }) => {
 
   return (
-    <ul>
+    <div>
       {orderIds.map((orderId) => (
-        <li key={orderId}>
-          <OrdersListItem orderId={orderId} />
-        </li>
+        <OrdersListItem key={orderId} orderId={orderId} />
       ))}
-    </ul>
+    </div>
   );
 };
 

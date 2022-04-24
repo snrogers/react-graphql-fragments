@@ -1,9 +1,9 @@
+import React, { FC } from "react";
 import { gql } from "@apollo/client";
-import { FC } from "react";
 
-import ErrorState from "../../../ErrorState";
-import LoadingState from "../../../LoadingState";
-import NotFound from "../../../NotFound";
+import ErrorViewState from "../../../ErrorViewState";
+import LoadingViewState from "../../../LoadingViewState";
+import NotFoundViewState from "../../../NotFoundViewState";
 import { useOrderItemSummaryQuery } from "./OrderItemSummary.graphql.generated";
 
 type OrderItemSummaryProps = {
@@ -14,14 +14,14 @@ const OrderItemSummary: FC<OrderItemSummaryProps> = ({ orderItemId }) => {
     variables: { orderItemId },
   });
 
-  if (loading) return <LoadingState />
-  if (error || !data) return <ErrorState />
+  if (loading) return <LoadingViewState />;
+  if (error || !data) return <ErrorViewState />;
+  if (!data.orderItemById) return <NotFoundViewState />;
 
   const { orderItemById: orderItem } = data;
-  if (!orderItem) return <NotFound />;
 
   return (
-    <li>
+    <li style={{ border: 'solid 1px black' }}>
       <div key={orderItem.id}>
         <div>
           ({orderItem.amount}){" "}

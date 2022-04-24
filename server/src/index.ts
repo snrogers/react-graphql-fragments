@@ -70,32 +70,101 @@ const orderData = [
       ],
     },
   },
+  {
+    id: "2",
+    createdAt: "1632854927",
+    table: {
+      id: "6",
+      name: "Table #100",
+      persons: [
+        {
+          id: "4",
+          name: "Someone Else",
+          age: 45,
+          orderItems: [
+            {
+              id: "9",
+              name: "Schmanana Schmancakes",
+              amount: 500,
+              cost: 45.55,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: "3",
+    createdAt: "1632854927",
+    table: {
+      id: "3T",
+      name: "Table #2",
+      persons: [
+        {
+          id: "3P",
+          name: "Order Items Will Not Be Found",
+          age: 45,
+          orderItems: [
+            {
+              id: "3OI",
+              name: "Shmanana Shmancakes",
+              amount: 500,
+              cost: 45.55,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: "4",
+    createdAt: "1632854927",
+    table: {
+      id: "4T",
+      name: "Table #4",
+      persons: [
+        {
+          id: "4P",
+          name: "Order Items Will Error out",
+          age: 45,
+          orderItems: [
+            {
+              id: "4OI",
+              name: "Shmanana Shmancakes",
+              amount: 500,
+              cost: 45.55,
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 const resolvers = {
   Query: {
-    orderById: (_: unknown, { id }: { id:string }) => {
-      const order = orderData
-        .find((o) => o.id === id)
-      console.log({ id, orderData, order })
-      return order
-    },
+    orderById: (_: unknown, { id }: { id: string }) =>
+      orderData.find((o) => o.id === id),
     orderItemById: (_: unknown, { id }: { id: string }) =>
-      orderData
-        .flatMap(prop("table"))
-        .flatMap(prop("persons"))
-        .flatMap(prop("orderItems"))
-        .find((oi) => oi.id === id),
+      id === "3OI" // NotFound on this one
+        ? null
+        : id === "4OI" // Error on this one
+        ? (() => {
+            return new Error("Kaboom");
+          })()
+        : orderData // Else just do it
+            .flatMap(prop("table"))
+            .flatMap(prop("persons"))
+            .flatMap(prop("orderItems"))
+            .find((oi) => oi.id === id),
     orders: () => orderData,
-    personById: (_: unknown, { id }: { id:string }) =>
+    personById: (_: unknown, { id }: { id: string }) =>
       orderData
         .flatMap(prop("table"))
         .flatMap(prop("persons"))
         .find((p) => p.id === id),
-    tableById: (_: unknown, { id }: { id:string }) =>
-      orderData
-        .flatMap(prop("table"))
-        .find((t) => t.id === id),
+    tableById: (_: unknown, { id }: { id: string }) =>
+      orderData.flatMap(prop("table")).find((t) => t.id === id),
   },
   // Mutation: {
   //   sendMessage: (_, { sender, channel, text }, { pubsub }) => {

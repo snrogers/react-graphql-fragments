@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { gql } from "@apollo/client";
 import { pluck } from "ramda";
 
-import ErrorState from "../../../ErrorState";
-import LoadingState from "../../../LoadingState";
-import NotFound from "../../../NotFound";
+import ErrorViewState from "../../../ErrorViewState";
+import LoadingViewState from "../../../LoadingViewState";
+import NotFoundViewState from "../../../NotFoundViewState";
 import OrderItemSummary from "../OrderItemSummary";
 import { usePersonSummaryQuery } from "./PersonSummary.graphql.generated";
 
@@ -16,16 +16,16 @@ const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
     variables: { personId },
   });
 
-  if (loading) return <LoadingState />;
-  if (error || !data) return <ErrorState />;
+  if (loading) return <LoadingViewState />;
+  if (error || !data) return <ErrorViewState />;
+  if (!data.personById) return <NotFoundViewState />;
 
   const { personById: person } = data;
-  if (!person) return <NotFound />;
-
   const orderItemIds = pluck("id", person.orderItems);
 
   return (
-    <li>
+    <li style={{ border: 'solid 1px black' }}>
+      <h5>Person</h5>
       <div>
         <div>
           <a href={`/people/${person.id}`}>{person.name}</a> ({person.age} y/o)

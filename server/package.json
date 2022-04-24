@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn tsc --noEmit && ts-node esbuild.config.ts",
-    "dev": "nodemon -x \"yarn serve\" --watch ./src",
+    "dev": "nodemon -x \"yarn serve\" -e \"ts\"",
     "serve": "yarn build && node dist/server.js"
   },
   "resolutions": {

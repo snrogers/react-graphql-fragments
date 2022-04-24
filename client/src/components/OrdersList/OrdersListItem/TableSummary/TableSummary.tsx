@@ -1,27 +1,27 @@
 import { FC } from "react";
-import ErrorState from "../../../ErrorState";
-import LoadingState from "../../../LoadingState";
-import NotFound from "../../../NotFound";
+
+import ErrorViewState from "../../../ErrorViewState";
+import LoadingViewState from "../../../LoadingViewState";
+import NotFoundViewState from "../../../NotFoundViewState";
 import PersonSummary from "../PersonSummary";
 import { useTableSummaryQuery } from './TableSummary.graphql.generated'
 
-export interface TableSummaryProps {
+type TableSummaryProps = {
   tableId: string;
 }
-
 const TableSummary: FC<TableSummaryProps> = ({ tableId }) => {
   const { data, loading, error } = useTableSummaryQuery({
     variables: { tableId },
   });
 
-  if (loading) return <LoadingState />
-  if (error || !data) return <ErrorState />
+  if (loading) return <LoadingViewState />
+  if (error || !data) return <ErrorViewState />
+  if (!data.tableById) return <NotFoundViewState />;
 
   const { tableById: table } = data;
-  if (!table) return <NotFound />;
 
   return (
-    <div>
+    <div style={{ border: 'solid 1px black' }}>
       <h2>
         <a href={`/tables/${table.id}`}> {table.name}</a>
       </h2>

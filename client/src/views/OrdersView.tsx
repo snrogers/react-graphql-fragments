@@ -4,8 +4,8 @@ import { pluck } from "ramda";
 
 import OrdersList from "../components/OrdersList";
 import { useOrdersViewQuery } from "./OrdersView.graphql.generated";
-import LoadingState from "../components/LoadingState";
-import ErrorState from "../components/ErrorState";
+import LoadingViewState from "../components/LoadingViewState";
+import ErrorViewState from "../components/ErrorViewState";
 
 const OrdersView: FC = () => {
   return (

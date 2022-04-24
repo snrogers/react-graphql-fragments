@@ -1,11 +1,11 @@
 import { FC } from "react";
-import ErrorState from "../../ErrorState";
-import LoadingState from "../../LoadingState";
+import ErrorViewState from "../../ErrorViewState";
+import LoadingViewState from "../../LoadingViewState";
 import OrdersListItem from "./OrdersListItem";
 
 import TableSummary from "./TableSummary/TableSummary";
 import { useOrdersListItemQuery } from './OrdersListItem.graphql.generated'
-import NotFound from "../../NotFound";
+import NotFoundViewState from "../../NotFoundViewState";
 
 // ----------------------------------------------------------------- //
 // Public API
@@ -20,15 +20,14 @@ const OrdersListItemQuery: FC<OrdersListItemQueryProps> = (props) => {
     variables: { orderId }
   })
 
-  if (loading ) return <LoadingState />
-  if (error || !data) return <ErrorState />
+  if (loading ) return <LoadingViewState />
+  if (error || !data) return <ErrorViewState error={error} />
+  if (!data.orderById) return <NotFoundViewState />
 
-  const { orderById }  = data
-
-  if (!orderById) return <NotFound />
+  const { orderById: order }  = data
 
   return (
-    <OrdersListItem order={orderById} />
+    <OrdersListItem order={order} />
   );
 };
 

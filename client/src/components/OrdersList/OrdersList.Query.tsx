@@ -2,16 +2,16 @@ import { FC } from "react";
 import { gql } from "@apollo/client";
 import { pluck } from "ramda";
 
-import ErrorState from "../ErrorState";
-import LoadingState from "../LoadingState";
+import ErrorViewState from "../ErrorViewState";
+import LoadingViewState from "../LoadingViewState";
 import OrdersListItem from "./OrdersListItem";
 import { useOrdersListQuery } from "./OrdersList.graphql.generated";
 
 const OrdersListQuery: FC = () => {
   const { loading, error, data } = useOrdersListQuery();
 
-  if (loading) return <LoadingState />;
-  if (error || !data) return <ErrorState />;
+  if (loading) return <LoadingViewState />;
+  if (error || !data) return <ErrorViewState />;
 
   const { orders } = data;
   const orderIds = pluck("id", orders);
@@ -19,9 +19,7 @@ const OrdersListQuery: FC = () => {
   return (
     <ul>
       {orderIds.map((orderId) => (
-        <li key={orderId}>
-          <OrdersListItem orderId={orderId} />
-        </li>
+        <OrdersListItem key={orderId} orderId={orderId} />
       ))}
     </ul>
   );
