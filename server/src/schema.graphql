@@ -16,6 +16,7 @@ type Person {
   name: String!
   age: Float!
   orderItems: [OrderItem!]!
+  isDead: Boolean!
 }
 
 type Order {
@@ -33,6 +34,7 @@ type Query {
 }
 
 type Mutation {
+  killPerson(id: ID!): Person
   nothing: ID!
 }
 

@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@ionic/react": "^6.1.2",
+    "@ionic/react-router": "^6.1.2",
     "graphql": "^15.0.0",
     "ramda": "^0.28.0",
     "react": "^17.0.0",

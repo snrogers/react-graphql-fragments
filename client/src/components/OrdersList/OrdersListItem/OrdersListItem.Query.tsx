@@ -20,7 +20,7 @@ const OrdersListItemQuery: FC<OrdersListItemQueryProps> = (props) => {
     variables: { orderId }
   })
 
-  if (loading ) return <LoadingViewState />
+  if (loading) return <LoadingViewState />
   if (error || !data) return <ErrorViewState error={error} />
   if (!data.orderById) return <NotFoundViewState />
 

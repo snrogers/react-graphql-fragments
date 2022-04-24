@@ -7,6 +7,7 @@ import LoadingViewState from "../../../LoadingViewState";
 import NotFoundViewState from "../../../NotFoundViewState";
 import OrderItemSummary from "../OrderItemSummary";
 import { usePersonSummaryQuery } from "./PersonSummary.graphql.generated";
+import PresentKillModalButton from "./PresentKillModalButton";
 
 type PersonSummaryProps = {
   personId: string;
@@ -25,7 +26,7 @@ const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
 
   return (
     <li style={{ border: 'solid 1px black' }}>
-      <h5>Person</h5>
+      <h5>Person <PresentKillModalButton personId={person.id} /></h5>
       <div>
         <div>
           <a href={`/people/${person.id}`}>{person.name}</a> ({person.age} y/o)

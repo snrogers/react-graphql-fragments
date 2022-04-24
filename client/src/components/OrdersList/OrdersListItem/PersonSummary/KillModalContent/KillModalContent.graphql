@@ -1,0 +1,10 @@
+fragment KillModalDeadPerson on Person {
+  id
+  isDead
+}
+
+mutation KillModalKillGuestMutation($personId: ID!) {
+  deadGuest: killPerson(id: $personId) {
+    ...KillModalDeadPerson
+  }
+}

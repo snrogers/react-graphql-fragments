@@ -939,6 +939,14 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
+"@ionic/react-router@^6.1.2":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-6.1.2.tgz#2f001fb975d96ba794a64a68a8956c8d0c1fcb52"
+  integrity sha512-AowICDPShUx43+LZ+4HrlfqaLG93mY2bN4z074csPWM+rV8HaqOzGAxqjpWnD7loWfzFhI8tOuh1nxWTKH9hnQ==
+  dependencies:
+    "@ionic/react" "^6.1.2"
+    tslib "*"
+
 "@ionic/react@^6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@ionic/react/-/react-6.1.2.tgz#621352f3e01586ca809131bdc7b2008ad6a1f3df"

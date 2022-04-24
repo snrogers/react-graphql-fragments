@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 
+import App from "./App";
 import { ApolloProvider } from "@apollo/client";
 import { apolloClient } from "./apollo";
 
+import "./index.css";
+import {IonApp} from "@ionic/react";
+
 ReactDOM.render(
-  <ApolloProvider client={apolloClient}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </ApolloProvider>,
+  <IonApp>
+    <App />
+  </IonApp>,
   document.getElementById("root")
 );
