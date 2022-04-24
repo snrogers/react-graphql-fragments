@@ -25,10 +25,11 @@ type Order {
 }
 
 type Query {
-  orders: [Order!]!
   orderById(id: ID!): Order
   orderItemById(id: ID!): OrderItem
+  orders: [Order!]!
   personById(id: ID!): Person
+  tableById(id: ID!): Table
 }
 
 type Mutation {

@@ -1,39 +1,44 @@
+import React, { FC } from "react";
 import { gql } from "@apollo/client";
-import {pluck} from "ramda";
-import { FC } from "react";
+import { pluck } from "ramda";
+
+import ErrorState from "../../../ErrorState";
+import LoadingState from "../../../LoadingState";
+import NotFound from "../../../NotFound";
 import OrderItemSummary from "../OrderItemSummary";
-import { usePersonSummaryQuery } from './PersonSummary.graphql.generated'
+import { usePersonSummaryQuery } from "./PersonSummary.graphql.generated";
 
 type PersonSummaryProps = {
   personId: string;
-}
+};
 const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
-
   const { data, loading, error } = usePersonSummaryQuery({
-    variables: { personId }
-  })
+    variables: { personId },
+  });
 
-  if (loading) return <p>Loading...</p>;
-  if (error || !data) return <p>Error :(</p>;
+  if (loading) return <LoadingState />;
+  if (error || !data) return <ErrorState />;
 
-  const { person } = data;
-  const orderItemIds = pluck("id", person.orderItems)
+  const { personById: person } = data;
+  if (!person) return <NotFound />;
+
+  const orderItemIds = pluck("id", person.orderItems);
 
   return (
-    <div key={person.id}>
+    <li>
       <div>
-        <a href={`/people/${person.id}`}>{person.name}</a> ({person.age} y/o)
+        <div>
+          <a href={`/people/${person.id}`}>{person.name}</a> ({person.age} y/o)
+        </div>
+        <div>
+          <ol>
+            {orderItemIds.map((orderItemId) => (
+              <OrderItemSummary key={orderItemId} orderItemId={orderItemId} />
+            ))}
+          </ol>
+        </div>
       </div>
-      <div>
-        <ol>
-          {person.orderItems.map((orderItem) => (
-            <li>
-              <OrderItemSummary orderItem={orderItem} />
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
+    </li>
   );
 };
 

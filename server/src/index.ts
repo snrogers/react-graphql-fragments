@@ -74,18 +74,28 @@ const orderData = [
 
 const resolvers = {
   Query: {
-    orders: () => orderData,
-    orderItemById: (id: string) =>
+    orderById: (_: unknown, { id }: { id:string }) => {
+      const order = orderData
+        .find((o) => o.id === id)
+      console.log({ id, orderData, order })
+      return order
+    },
+    orderItemById: (_: unknown, { id }: { id: string }) =>
       orderData
         .flatMap(prop("table"))
         .flatMap(prop("persons"))
         .flatMap(prop("orderItems"))
         .find((oi) => oi.id === id),
-    personById: (id: string) =>
+    orders: () => orderData,
+    personById: (_: unknown, { id }: { id:string }) =>
       orderData
         .flatMap(prop("table"))
         .flatMap(prop("persons"))
         .find((p) => p.id === id),
+    tableById: (_: unknown, { id }: { id:string }) =>
+      orderData
+        .flatMap(prop("table"))
+        .find((t) => t.id === id),
   },
   // Mutation: {
   //   sendMessage: (_, { sender, channel, text }, { pubsub }) => {

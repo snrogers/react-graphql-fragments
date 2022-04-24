@@ -13,7 +13,8 @@ const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
         <a href={`/orders/${order.id}`}>{order.id}</a>{" "}
         <span>({new Date(order.createdAt * 1000).toString()})</span>
       </div>
-      <TableSummary table={order.table} />
+
+      <TableSummary tableId={order.table.id} />
     </div>
   );
 };

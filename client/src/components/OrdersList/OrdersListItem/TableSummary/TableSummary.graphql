@@ -5,3 +5,9 @@ fragment TableSummaryFragment on Table {
     id
   }
 }
+
+query TableSummaryQuery($tableId: ID!) {
+  tableById(id: $tableId) {
+    ...TableSummaryFragment
+  }
+}

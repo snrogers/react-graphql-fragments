@@ -1,13 +1,16 @@
 {
   "private": true,
   "scripts": {
+    "client": "cd client && yarn serve",
+    "client:dev": "cd client && yarn dev",
+    "dev": "concurrently 'npm:client:dev' 'npm:server:dev' 'npm:types' -c blue.bold,magenta,cyan",
     "install:client": "cd client && yarn",
     "install:server": "cd server && yarn",
     "postinstall": "concurrently 'npm:install:client' 'npm:install:server' -c blue.bold,magenta,cyan",
-    "types": "cd client && yarn types:watch",
-    "client": "cd client && yarn dev",
+    "serve": "concurrently 'npm:client' 'npm:server' 'npm:types' -c blue.bold,magenta,cyan",
     "server": "cd server && yarn serve",
-    "serve": "concurrently 'npm:client' 'npm:server' 'npm:types' -c blue.bold,magenta,cyan"
+    "server:dev": "cd server && yarn dev",
+    "types": "cd client && yarn types:watch"
   },
   "dependencies": {
     "concurrently": "^6.3.0"

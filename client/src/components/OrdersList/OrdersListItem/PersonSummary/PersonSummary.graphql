@@ -3,11 +3,11 @@ fragment PersonSummaryFragment on Person {
   name
   age
   orderItems {
-    ...OrderItemSummaryFragment
+    id
   }
 }
 
-query PersonSummaryQuery($personId: ID! {
+query PersonSummaryQuery($personId: ID!) {
   personById(id: $personId) {
     ...PersonSummaryFragment
   }
