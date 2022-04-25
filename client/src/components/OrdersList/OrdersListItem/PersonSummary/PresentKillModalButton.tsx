@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import { IonButton, useIonModal } from "@ionic/react";
+import { IonButton } from "@ionic/react";
 
-import { KillModalContent } from "./KillModalContent";
-import { withApollo } from "../../../../Effects";
+import { useKillModal } from "./KillModalContent";
 
 type PresentKillModalButtonProps = {
   personId: string;
@@ -10,7 +9,7 @@ type PresentKillModalButtonProps = {
 const PresentKillModalButton: FC<PresentKillModalButtonProps> = (props) => {
   const { personId } = props;
 
-  const [presentKillModal] = useIonModal(withApollo(KillModalContent));
+  const [presentKillModal] = useKillModal({ personId });
 
   return (
     <IonButton onClick={() => presentKillModal()} expand={"full"}>

@@ -3,18 +3,19 @@ import * as Types from '../../../../generated/graphql';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
-export type PersonSummaryFragment = { __typename?: 'Person', id: string, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> };
+export type PersonSummaryFragment = { __typename?: 'Person', id: string, isDead: boolean, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> };
 
 export type PersonSummaryQueryVariables = Types.Exact<{
   personId: Types.Scalars['ID'];
 }>;
 
 
-export type PersonSummaryQuery = { __typename?: 'Query', personById?: { __typename?: 'Person', id: string, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> } | null | undefined };
+export type PersonSummaryQuery = { __typename?: 'Query', personById?: { __typename?: 'Person', id: string, isDead: boolean, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> } | null | undefined };
 
 export const PersonSummaryFragmentDoc = gql`
     fragment PersonSummaryFragment on Person {
   id
+  isDead
   name
   age
   orderItems {

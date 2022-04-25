@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { gql } from "@apollo/client";
 import { pluck } from "ramda";
 
 import ErrorViewState from "../../../ErrorViewState";
@@ -26,7 +25,13 @@ const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
 
   return (
     <li style={{ border: 'solid 1px black' }}>
-      <h5>Person <PresentKillModalButton personId={person.id} /></h5>
+      <h5>
+        Person
+        { person.isDead
+          && <h1 style={{fontSize: '100px'}}>💀</h1>
+        }
+        <PresentKillModalButton personId={person.id} />
+      </h5>
       <div>
         <div>
           <a href={`/people/${person.id}`}>{person.name}</a> ({person.age} y/o)

@@ -1,3 +1,17 @@
-import { KillModalContent } from './KillModalContent'
+import { useIonModal } from "@ionic/react";
 
-export { KillModalContent }
+import { KillModalContentProps, KillModalContent } from "./KillModalContent";
+
+export { KillModalContent };
+
+export const useKillModal = (props: Omit<KillModalContentProps, "dismissModal">) => {
+  const [presentKillModal, dismissKillModal] = useIonModal(
+    KillModalContent,
+    {
+      dismissModal: () => dismissKillModal(),
+      ...props,
+    }
+  );
+
+  return [presentKillModal, dismissKillModal];
+};

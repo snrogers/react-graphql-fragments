@@ -158,21 +158,31 @@ const resolvers = {
             .flatMap(prop("orderItems"))
             .find((oi) => oi.id === id),
     orders: () => orderData,
-    personById: (_: unknown, { id }: { id: string }) =>
-      orderData
+    personById: (_: unknown, { id }: { id: string }) => {
+      const person = orderData
         .flatMap(prop("table"))
         .flatMap(prop("persons"))
-        .find((p) => p.id === id),
+        .find((p) => p.id === id);
+
+      if (person) return { isDead: false, ...person };
+      else return null;
+    },
     tableById: (_: unknown, { id }: { id: string }) =>
       orderData.flatMap(prop("table")).find((t) => t.id === id),
   },
-  // Mutation: {
-  //   sendMessage: (_, { sender, channel, text }, { pubsub }) => {
-  //     const message = { sender, channel, text };
-  //     pubsub.publish(channel, { message });
-  //     return message;
-  //   },
-  // },
+  Mutation: {
+    killPerson: (_: unknown, { id }: { id: string }) => {
+      const person = orderData
+        .flatMap(prop("table"))
+        .flatMap(prop("persons"))
+        .find((p) => p.id === id);
+
+      console.log('Person', id, person)
+
+      if (person) return { isDead: true, ...person };
+      else return null;
+    },
+  },
   // Subscription: {
   //   message: {
   //     subscribe: (_, { channel }, { pubsub }) => {

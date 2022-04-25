@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "concurrently": "^6.3.0"
+  },
+  "devDependencies": {
+    "@ionic/cli": "^6.19.0"
   }
 }

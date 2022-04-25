@@ -1,5 +1,6 @@
 fragment PersonSummaryFragment on Person {
   id
+  isDead
   name
   age
   orderItems {
