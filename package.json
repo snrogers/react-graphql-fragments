@@ -13,7 +13,8 @@
     "types": "cd client && yarn types:watch"
   },
   "dependencies": {
-    "concurrently": "^6.3.0"
+    "concurrently": "^6.3.0",
+    "prettier": "^2.6.2"
   },
   "devDependencies": {
     "@ionic/cli": "^6.19.0"
