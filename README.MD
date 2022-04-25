@@ -19,6 +19,7 @@ yarn && yarn serve
   - The form on the left enables Apollo to infer the associations automatically. The Right does not.
   - The form on the left allows us to query for `SomeItem` and each of the `AssociatedItem`s individually, while still being able to perform local queries against the graph as if we had fetched the `SomeItem` and `AssociatedItems` nested together as a single query, e.g. `SomeItem { associatedItems { ...AssociatedItemFragment } }`.
 - Don't be afraid to push action-oriented hooks like `useMutation` or `useIonModal` down _into_ a one-off `<DoThingButton />` component, rather than passing a callback into an `onClick` on an `IonButton`
+- Try to use ways of indicating an "In-Progress" state that _don't_ reach far away from the button that triggered the action. See <PresentKillModalButton /> as an example of using IonToast and Spinny-Buttons to indicate an In-Progress state without having to directly pass information outside of the Button.
 
 
 # TODO: Talk to Cory
@@ -39,7 +40,7 @@ It is impossible for us to predict the load order that of our Components, so we 
 - *EmptyViewState*
   - Indicates that the requested resource was not found and that's fine.
   - DOES NOT Indicate that an error has occurred
-- LoadingViewState
+- *LoadingViewState*
   - Indicates that the resource has been requested, but not yet arrived
   - DOES NOT Indicate that an error has occurred
   - Likely to include some IonSkeleton/IonSpinner business to indicate what the component _will_ be when rendered? TODO: Cory
