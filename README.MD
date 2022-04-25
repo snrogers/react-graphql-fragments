@@ -26,11 +26,11 @@ yarn && yarn serve
 ## Query Component Design
 Breaking down queries into very small units presents an interesting challenge, especially in the context of TN-Pos.
 If data is loaded separately in separate Components on screen, we need to be able to have a UI that makes sense, even if not all of it is displayed yet.
-It is impossible for us to predict the load order that of our Components, so we need to make sure that Components don't pop in and out of existence and push each other around.
+It is impractical for us to predict or control the load order that of our Components, so we need to make sure that Components don't pop in and out of existence and push each other around.
 
 
 ### View States
-*IMPORTANT:* Typically all ViewStates for a given Component should fill the same on-screen footprint.
+**IMPORTANT:** Typically all ViewStates for a given Component should fill the same on-screen footprint to prevent Elements jumping around in our view
 - *ErrorViewState*
   - Indicates that an error has occurred
   - May include a `<Button />` to attempt a refetch? TODO: Cory
