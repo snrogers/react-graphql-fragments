@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { gql } from "@apollo/client";
 
 import ErrorViewState from "../../../ErrorViewState";
 import LoadingViewState from "../../../LoadingViewState";
@@ -21,7 +20,7 @@ const OrderItemSummary: FC<OrderItemSummaryProps> = ({ orderItemId }) => {
   const { orderItemById: orderItem } = data;
 
   return (
-    <li style={{ border: 'solid 1px black' }}>
+    <li style={{ border: "solid 1px black" }}>
       <div key={orderItem.id}>
         <div>
           ({orderItem.amount}){" "}
