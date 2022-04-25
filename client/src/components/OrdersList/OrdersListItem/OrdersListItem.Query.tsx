@@ -1,10 +1,8 @@
 import { FC } from "react";
 import ErrorViewState from "../../ErrorViewState";
-import LoadingViewState from "../../LoadingViewState";
 import OrdersListItem from "./OrdersListItem";
 
-import TableSummary from "./TableSummary/TableSummary";
-import { useOrdersListItemQuery } from './OrdersListItem.graphql.generated'
+import { useOrdersListItemQuery } from "./OrdersListItem.graphql.generated";
 import NotFoundViewState from "../../NotFoundViewState";
 
 // ----------------------------------------------------------------- //
@@ -12,23 +10,21 @@ import NotFoundViewState from "../../NotFoundViewState";
 // ----------------------------------------------------------------- //
 type OrdersListItemQueryProps = {
   orderId: string;
-}
+};
 const OrdersListItemQuery: FC<OrdersListItemQueryProps> = (props) => {
-  const { orderId } = props
+  const { orderId } = props;
 
   const { data, loading, error } = useOrdersListItemQuery({
-    variables: { orderId }
-  })
+    variables: { orderId },
+  });
 
-  if (loading) return <LoadingViewState />
-  if (error || !data) return <ErrorViewState error={error} />
-  if (!data.orderById) return <NotFoundViewState />
+  if (loading) return <p>Loading Order: [{orderId}] </p>;
+  if (error || !data) return <ErrorViewState error={error} />;
+  if (!data.orderById) return <NotFoundViewState />;
 
-  const { orderById: order }  = data
+  const { orderById: order } = data;
 
-  return (
-    <OrdersListItem order={order} />
-  );
+  return <OrdersListItem order={order} />;
 };
 
 export default OrdersListItemQuery;

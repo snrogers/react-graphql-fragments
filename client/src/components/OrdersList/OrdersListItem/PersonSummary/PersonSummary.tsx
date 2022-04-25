@@ -1,12 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { pluck } from "ramda";
 
 import ErrorViewState from "../../../ErrorViewState";
-import LoadingViewState from "../../../LoadingViewState";
 import NotFoundViewState from "../../../NotFoundViewState";
 import OrderItemSummary from "../OrderItemSummary";
-import { usePersonSummaryQuery } from "./PersonSummary.graphql.generated";
 import PresentKillModalButton from "./PresentKillModalButton";
+import { usePersonSummaryQuery } from "./PersonSummary.graphql.generated";
 
 type PersonSummaryProps = {
   personId: string;
@@ -16,7 +15,7 @@ const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
     variables: { personId },
   });
 
-  if (loading) return <LoadingViewState />;
+  if (loading) return <p>Loading Person: [{personId}] </p>;
   if (error || !data) return <ErrorViewState />;
   if (!data.personById) return <NotFoundViewState />;
 
@@ -24,12 +23,10 @@ const PersonSummary: FC<PersonSummaryProps> = ({ personId }) => {
   const orderItemIds = pluck("id", person.orderItems);
 
   return (
-    <li style={{ border: 'solid 1px black' }}>
+    <li style={{ border: "solid 1px black" }}>
       <h5>
         Person
-        { person.isDead
-          && <h1 style={{fontSize: '100px'}}>💀</h1>
-        }
+        {person.isDead && <h1 style={{ fontSize: "100px" }}>💀</h1>}
         <PresentKillModalButton personId={person.id} />
       </h5>
       <div>

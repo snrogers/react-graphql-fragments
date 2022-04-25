@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import ErrorViewState from "../../../ErrorViewState";
-import LoadingViewState from "../../../LoadingViewState";
 import NotFoundViewState from "../../../NotFoundViewState";
 import PersonSummary from "../PersonSummary";
 import { useTableSummaryQuery } from './TableSummary.graphql.generated'
@@ -14,7 +13,7 @@ const TableSummary: FC<TableSummaryProps> = ({ tableId }) => {
     variables: { tableId },
   });
 
-  if (loading) return <LoadingViewState />
+  if (loading) return <p>Loading Table: [{tableId}] </p>
   if (error || !data) return <ErrorViewState />
   if (!data.tableById) return <NotFoundViewState />;
 
