@@ -16,7 +16,7 @@ generates:
 # Co-located Code
 # ----------------------------------------------------------------- #
   src/:
-    documents: "./**/**/*.graphql"
+    documents: "./**/*.graphql"
     preset: near-operation-file
     presetConfig:
       extension: .graphql.generated.ts
