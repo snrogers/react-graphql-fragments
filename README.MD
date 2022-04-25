@@ -49,3 +49,17 @@ It is impractical for us to predict or control the load order that of our Compon
   - Rendered once all needed data has been retrieved
   - Named as the root name of the Component, # TODO: or as ComponentRootNameContainer if using Container/Presentation components?
   - ??Protip: Keeping to the `__ViewState` suffix convention will make it easy to filter non-resolved ViewStates and -Query components by name in React Dev Tools??
+
+### Modals
+Modals should typically be composed of 3 distinct parts
+- ModalContent
+  - Usually in its own file, as `SomeKindaModalContent.tsx`
+  - Contains the UI to be displayed as a Modal, as well as any logic or resource acquisition
+- Declarative API (JSX)
+  - Usually defined in an `index.tsx` importing `SomeKindaModalContent.tx` and named as `SomeKindaModal`
+  - Thin wrapper Component built around ModalContent using `<IonModal>...</IonModal>`
+- Imperative API (hooks)
+  - Usually defined in an `index.tsx` importing `SomeKindaModalContent.tx` and named as `useSomeKindaModal`
+  - Thin wrapper hook built around `useIonModal(...)`
+
+If you're building a new Modal, only bother to build the API(s) that you actually need, but keep this breakdown
