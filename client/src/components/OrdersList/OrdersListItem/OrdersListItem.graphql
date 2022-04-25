@@ -1,7 +1,9 @@
 fragment OrdersListItemOrder on Order {
   id
   createdAt
-  table { id }
+  table {
+    id
+  }
 }
 
 query OrdersListItemQuery($orderId: ID!) {

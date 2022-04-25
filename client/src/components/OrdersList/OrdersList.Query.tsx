@@ -9,7 +9,7 @@ import { useOrdersListQuery } from "./OrdersList.graphql.generated";
 const OrdersListQuery: FC = () => {
   const { loading, error, data } = useOrdersListQuery();
 
-  if (loading) return <p>Loading Orders...</p>
+  if (loading) return <p>Loading Orders...</p>;
   if (error || !data) return <ErrorViewState />;
 
   const { orders } = data;

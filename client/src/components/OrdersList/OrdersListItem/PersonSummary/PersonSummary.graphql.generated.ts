@@ -1,35 +1,55 @@
-import * as Types from '../../../../generated/graphql';
+import * as Types from "../../../../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type PersonSummaryFragment = { __typename?: 'Person', id: string, isDead: boolean, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> };
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type PersonSummaryFragment = {
+  __typename?: "Person";
+  id: string;
+  isDead: boolean;
+  name: string;
+  age: number;
+  orderItems: Array<{ __typename?: "OrderItem"; id: string }>;
+};
 
 export type PersonSummaryQueryVariables = Types.Exact<{
-  personId: Types.Scalars['ID'];
+  personId: Types.Scalars["ID"];
 }>;
 
-
-export type PersonSummaryQuery = { __typename?: 'Query', personById?: { __typename?: 'Person', id: string, isDead: boolean, name: string, age: number, orderItems: Array<{ __typename?: 'OrderItem', id: string }> } | null | undefined };
+export type PersonSummaryQuery = {
+  __typename?: "Query";
+  personById?:
+    | {
+        __typename?: "Person";
+        id: string;
+        isDead: boolean;
+        name: string;
+        age: number;
+        orderItems: Array<{ __typename?: "OrderItem"; id: string }>;
+      }
+    | null
+    | undefined;
+};
 
 export const PersonSummaryFragmentDoc = gql`
-    fragment PersonSummaryFragment on Person {
-  id
-  isDead
-  name
-  age
-  orderItems {
+  fragment PersonSummaryFragment on Person {
     id
+    isDead
+    name
+    age
+    orderItems {
+      id
+    }
   }
-}
-    `;
+`;
 export const PersonSummaryQueryDocument = gql`
-    query PersonSummaryQuery($personId: ID!) {
-  personById(id: $personId) {
-    ...PersonSummaryFragment
+  query PersonSummaryQuery($personId: ID!) {
+    personById(id: $personId) {
+      ...PersonSummaryFragment
+    }
   }
-}
-    ${PersonSummaryFragmentDoc}`;
+  ${PersonSummaryFragmentDoc}
+`;
 
 /**
  * __usePersonSummaryQuery__
@@ -47,14 +67,37 @@ export const PersonSummaryQueryDocument = gql`
  *   },
  * });
  */
-export function usePersonSummaryQuery(baseOptions: Apollo.QueryHookOptions<PersonSummaryQuery, PersonSummaryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PersonSummaryQuery, PersonSummaryQueryVariables>(PersonSummaryQueryDocument, options);
-      }
-export function usePersonSummaryQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PersonSummaryQuery, PersonSummaryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PersonSummaryQuery, PersonSummaryQueryVariables>(PersonSummaryQueryDocument, options);
-        }
-export type PersonSummaryQueryHookResult = ReturnType<typeof usePersonSummaryQuery>;
-export type PersonSummaryQueryLazyQueryHookResult = ReturnType<typeof usePersonSummaryQueryLazyQuery>;
-export type PersonSummaryQueryQueryResult = Apollo.QueryResult<PersonSummaryQuery, PersonSummaryQueryVariables>;
+export function usePersonSummaryQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    PersonSummaryQuery,
+    PersonSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PersonSummaryQuery, PersonSummaryQueryVariables>(
+    PersonSummaryQueryDocument,
+    options
+  );
+}
+export function usePersonSummaryQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PersonSummaryQuery,
+    PersonSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PersonSummaryQuery, PersonSummaryQueryVariables>(
+    PersonSummaryQueryDocument,
+    options
+  );
+}
+export type PersonSummaryQueryHookResult = ReturnType<
+  typeof usePersonSummaryQuery
+>;
+export type PersonSummaryQueryLazyQueryHookResult = ReturnType<
+  typeof usePersonSummaryQueryLazyQuery
+>;
+export type PersonSummaryQueryQueryResult = Apollo.QueryResult<
+  PersonSummaryQuery,
+  PersonSummaryQueryVariables
+>;

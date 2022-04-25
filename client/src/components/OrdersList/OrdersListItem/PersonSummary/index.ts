@@ -1,3 +1,3 @@
-import PersonSummary from './PersonSummary'
+import PersonSummary from "./PersonSummary";
 
-export default PersonSummary
+export default PersonSummary;

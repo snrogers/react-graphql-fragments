@@ -1,3 +1,3 @@
-import OrderItemSummary from './OrderItemSummary'
+import OrderItemSummary from "./OrderItemSummary";
 
 export default OrderItemSummary;

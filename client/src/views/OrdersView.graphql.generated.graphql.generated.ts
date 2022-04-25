@@ -1,21 +1,22 @@
-import * as Types from '../generated/graphql';
+import * as Types from "../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type OrdersViewQueryVariables = Types.Exact<{ [key: string]: never; }>;
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type OrdersViewQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-
-export type OrdersViewQuery = { __typename?: 'Query', orders: Array<{ __typename?: 'Order', id: string }> };
-
+export type OrdersViewQuery = {
+  __typename?: "Query";
+  orders: Array<{ __typename?: "Order"; id: string }>;
+};
 
 export const OrdersViewQueryDocument = gql`
-    query OrdersViewQuery {
-  orders {
-    id
+  query OrdersViewQuery {
+    orders {
+      id
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useOrdersViewQuery__
@@ -32,14 +33,35 @@ export const OrdersViewQueryDocument = gql`
  *   },
  * });
  */
-export function useOrdersViewQuery(baseOptions?: Apollo.QueryHookOptions<OrdersViewQuery, OrdersViewQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OrdersViewQuery, OrdersViewQueryVariables>(OrdersViewQueryDocument, options);
-      }
-export function useOrdersViewQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrdersViewQuery, OrdersViewQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OrdersViewQuery, OrdersViewQueryVariables>(OrdersViewQueryDocument, options);
-        }
+export function useOrdersViewQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    OrdersViewQuery,
+    OrdersViewQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<OrdersViewQuery, OrdersViewQueryVariables>(
+    OrdersViewQueryDocument,
+    options
+  );
+}
+export function useOrdersViewQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    OrdersViewQuery,
+    OrdersViewQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<OrdersViewQuery, OrdersViewQueryVariables>(
+    OrdersViewQueryDocument,
+    options
+  );
+}
 export type OrdersViewQueryHookResult = ReturnType<typeof useOrdersViewQuery>;
-export type OrdersViewQueryLazyQueryHookResult = ReturnType<typeof useOrdersViewQueryLazyQuery>;
-export type OrdersViewQueryQueryResult = Apollo.QueryResult<OrdersViewQuery, OrdersViewQueryVariables>;
+export type OrdersViewQueryLazyQueryHookResult = ReturnType<
+  typeof useOrdersViewQueryLazyQuery
+>;
+export type OrdersViewQueryQueryResult = Apollo.QueryResult<
+  OrdersViewQuery,
+  OrdersViewQueryVariables
+>;

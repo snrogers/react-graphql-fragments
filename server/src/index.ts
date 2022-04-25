@@ -177,7 +177,7 @@ const resolvers = {
         .flatMap(prop("persons"))
         .find((p) => p.id === id);
 
-      console.log('Person', id, person)
+      console.log("Person", id, person);
 
       if (person) return { isDead: true, ...person };
       else return null;

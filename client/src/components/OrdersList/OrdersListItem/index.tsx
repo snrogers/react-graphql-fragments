@@ -1,3 +1,3 @@
-import OrdersListItemQuery from './OrdersListItem.Query'
+import OrdersListItemQuery from "./OrdersListItem.Query";
 
-export default OrdersListItemQuery
+export default OrdersListItemQuery;

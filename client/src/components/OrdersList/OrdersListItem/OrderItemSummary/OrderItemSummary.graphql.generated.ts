@@ -1,32 +1,50 @@
-import * as Types from '../../../../generated/graphql';
+import * as Types from "../../../../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type OrderItemSummaryFragment = { __typename?: 'OrderItem', id: string, name: string, amount: number, cost: number };
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type OrderItemSummaryFragment = {
+  __typename?: "OrderItem";
+  id: string;
+  name: string;
+  amount: number;
+  cost: number;
+};
 
 export type OrderItemSummaryQueryVariables = Types.Exact<{
-  orderItemId: Types.Scalars['ID'];
+  orderItemId: Types.Scalars["ID"];
 }>;
 
-
-export type OrderItemSummaryQuery = { __typename?: 'Query', orderItemById?: { __typename?: 'OrderItem', id: string, name: string, amount: number, cost: number } | null | undefined };
+export type OrderItemSummaryQuery = {
+  __typename?: "Query";
+  orderItemById?:
+    | {
+        __typename?: "OrderItem";
+        id: string;
+        name: string;
+        amount: number;
+        cost: number;
+      }
+    | null
+    | undefined;
+};
 
 export const OrderItemSummaryFragmentDoc = gql`
-    fragment OrderItemSummaryFragment on OrderItem {
-  id
-  name
-  amount
-  cost
-}
-    `;
-export const OrderItemSummaryQueryDocument = gql`
-    query OrderItemSummaryQuery($orderItemId: ID!) {
-  orderItemById(id: $orderItemId) {
-    ...OrderItemSummaryFragment
+  fragment OrderItemSummaryFragment on OrderItem {
+    id
+    name
+    amount
+    cost
   }
-}
-    ${OrderItemSummaryFragmentDoc}`;
+`;
+export const OrderItemSummaryQueryDocument = gql`
+  query OrderItemSummaryQuery($orderItemId: ID!) {
+    orderItemById(id: $orderItemId) {
+      ...OrderItemSummaryFragment
+    }
+  }
+  ${OrderItemSummaryFragmentDoc}
+`;
 
 /**
  * __useOrderItemSummaryQuery__
@@ -44,14 +62,37 @@ export const OrderItemSummaryQueryDocument = gql`
  *   },
  * });
  */
-export function useOrderItemSummaryQuery(baseOptions: Apollo.QueryHookOptions<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>(OrderItemSummaryQueryDocument, options);
-      }
-export function useOrderItemSummaryQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>(OrderItemSummaryQueryDocument, options);
-        }
-export type OrderItemSummaryQueryHookResult = ReturnType<typeof useOrderItemSummaryQuery>;
-export type OrderItemSummaryQueryLazyQueryHookResult = ReturnType<typeof useOrderItemSummaryQueryLazyQuery>;
-export type OrderItemSummaryQueryQueryResult = Apollo.QueryResult<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>;
+export function useOrderItemSummaryQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    OrderItemSummaryQuery,
+    OrderItemSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<OrderItemSummaryQuery, OrderItemSummaryQueryVariables>(
+    OrderItemSummaryQueryDocument,
+    options
+  );
+}
+export function useOrderItemSummaryQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    OrderItemSummaryQuery,
+    OrderItemSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    OrderItemSummaryQuery,
+    OrderItemSummaryQueryVariables
+  >(OrderItemSummaryQueryDocument, options);
+}
+export type OrderItemSummaryQueryHookResult = ReturnType<
+  typeof useOrderItemSummaryQuery
+>;
+export type OrderItemSummaryQueryLazyQueryHookResult = ReturnType<
+  typeof useOrderItemSummaryQueryLazyQuery
+>;
+export type OrderItemSummaryQueryQueryResult = Apollo.QueryResult<
+  OrderItemSummaryQuery,
+  OrderItemSummaryQueryVariables
+>;

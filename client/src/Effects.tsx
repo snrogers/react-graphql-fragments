@@ -3,7 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 
 import { apolloClient } from "./apollo";
 import { pipe } from "ramda";
-import {IonApp} from "@ionic/react";
+import { IonApp } from "@ionic/react";
 
 type AnyComponent = ComponentType<any>;
 
@@ -37,7 +37,7 @@ export const withApollo = withWrapperCmp(ApolloProvider, {
   client: apolloClient,
 });
 
-export const withIonApp = withWrapperCmp(IonApp)
+export const withIonApp = withWrapperCmp(IonApp);
 
 /** Would be a composition of HOCs if we needed more effects
  * to run our App

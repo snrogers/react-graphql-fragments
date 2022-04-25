@@ -1,3 +1,3 @@
-import TableSummary from './TableSummary'
+import TableSummary from "./TableSummary";
 
-export default TableSummary
+export default TableSummary;

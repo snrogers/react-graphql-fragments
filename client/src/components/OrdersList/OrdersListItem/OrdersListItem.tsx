@@ -4,10 +4,10 @@ import { OrdersListItemOrderFragment } from "./OrdersListItem.graphql.generated"
 
 type OrdersListItemProps = {
   order: OrdersListItemOrderFragment;
-}
+};
 const OrdersListItem: FC<OrdersListItemProps> = ({ order }) => {
   return (
-    <li style={{ border: 'solid 1px black' }}>
+    <li style={{ border: "solid 1px black" }}>
       <div key={order.id} style={{ border: "1px black solid" }}>
         <div>
           <a href={`/orders/${order.id}`}>{order.id}</a>{" "}

@@ -1,33 +1,49 @@
-import * as Types from '../../../../generated/graphql';
+import * as Types from "../../../../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type TableSummaryFragment = { __typename?: 'Table', id: string, name: string, persons: Array<{ __typename?: 'Person', id: string }> };
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type TableSummaryFragment = {
+  __typename?: "Table";
+  id: string;
+  name: string;
+  persons: Array<{ __typename?: "Person"; id: string }>;
+};
 
 export type TableSummaryQueryVariables = Types.Exact<{
-  tableId: Types.Scalars['ID'];
+  tableId: Types.Scalars["ID"];
 }>;
 
-
-export type TableSummaryQuery = { __typename?: 'Query', tableById?: { __typename?: 'Table', id: string, name: string, persons: Array<{ __typename?: 'Person', id: string }> } | null | undefined };
+export type TableSummaryQuery = {
+  __typename?: "Query";
+  tableById?:
+    | {
+        __typename?: "Table";
+        id: string;
+        name: string;
+        persons: Array<{ __typename?: "Person"; id: string }>;
+      }
+    | null
+    | undefined;
+};
 
 export const TableSummaryFragmentDoc = gql`
-    fragment TableSummaryFragment on Table {
-  id
-  name
-  persons {
+  fragment TableSummaryFragment on Table {
     id
+    name
+    persons {
+      id
+    }
   }
-}
-    `;
+`;
 export const TableSummaryQueryDocument = gql`
-    query TableSummaryQuery($tableId: ID!) {
-  tableById(id: $tableId) {
-    ...TableSummaryFragment
+  query TableSummaryQuery($tableId: ID!) {
+    tableById(id: $tableId) {
+      ...TableSummaryFragment
+    }
   }
-}
-    ${TableSummaryFragmentDoc}`;
+  ${TableSummaryFragmentDoc}
+`;
 
 /**
  * __useTableSummaryQuery__
@@ -45,14 +61,37 @@ export const TableSummaryQueryDocument = gql`
  *   },
  * });
  */
-export function useTableSummaryQuery(baseOptions: Apollo.QueryHookOptions<TableSummaryQuery, TableSummaryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TableSummaryQuery, TableSummaryQueryVariables>(TableSummaryQueryDocument, options);
-      }
-export function useTableSummaryQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TableSummaryQuery, TableSummaryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TableSummaryQuery, TableSummaryQueryVariables>(TableSummaryQueryDocument, options);
-        }
-export type TableSummaryQueryHookResult = ReturnType<typeof useTableSummaryQuery>;
-export type TableSummaryQueryLazyQueryHookResult = ReturnType<typeof useTableSummaryQueryLazyQuery>;
-export type TableSummaryQueryQueryResult = Apollo.QueryResult<TableSummaryQuery, TableSummaryQueryVariables>;
+export function useTableSummaryQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    TableSummaryQuery,
+    TableSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<TableSummaryQuery, TableSummaryQueryVariables>(
+    TableSummaryQueryDocument,
+    options
+  );
+}
+export function useTableSummaryQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    TableSummaryQuery,
+    TableSummaryQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<TableSummaryQuery, TableSummaryQueryVariables>(
+    TableSummaryQueryDocument,
+    options
+  );
+}
+export type TableSummaryQueryHookResult = ReturnType<
+  typeof useTableSummaryQuery
+>;
+export type TableSummaryQueryLazyQueryHookResult = ReturnType<
+  typeof useTableSummaryQueryLazyQuery
+>;
+export type TableSummaryQueryQueryResult = Apollo.QueryResult<
+  TableSummaryQuery,
+  TableSummaryQueryVariables
+>;

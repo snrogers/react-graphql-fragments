@@ -1,31 +1,44 @@
-import * as Types from '../../../../../generated/graphql';
+import * as Types from "../../../../../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type KillModalDeadPersonFragment = { __typename?: 'Person', id: string, isDead: boolean };
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type KillModalDeadPersonFragment = {
+  __typename?: "Person";
+  id: string;
+  isDead: boolean;
+};
 
 export type KillModalKillGuestMutationVariables = Types.Exact<{
-  personId: Types.Scalars['ID'];
+  personId: Types.Scalars["ID"];
 }>;
 
-
-export type KillModalKillGuestMutation = { __typename?: 'Mutation', deadGuest?: { __typename?: 'Person', id: string, isDead: boolean } | null | undefined };
+export type KillModalKillGuestMutation = {
+  __typename?: "Mutation";
+  deadGuest?:
+    | { __typename?: "Person"; id: string; isDead: boolean }
+    | null
+    | undefined;
+};
 
 export const KillModalDeadPersonFragmentDoc = gql`
-    fragment KillModalDeadPerson on Person {
-  id
-  isDead
-}
-    `;
-export const KillModalKillGuestMutationDocument = gql`
-    mutation KillModalKillGuestMutation($personId: ID!) {
-  deadGuest: killPerson(id: $personId) {
-    ...KillModalDeadPerson
+  fragment KillModalDeadPerson on Person {
+    id
+    isDead
   }
-}
-    ${KillModalDeadPersonFragmentDoc}`;
-export type KillModalKillGuestMutationMutationFn = Apollo.MutationFunction<KillModalKillGuestMutation, KillModalKillGuestMutationVariables>;
+`;
+export const KillModalKillGuestMutationDocument = gql`
+  mutation KillModalKillGuestMutation($personId: ID!) {
+    deadGuest: killPerson(id: $personId) {
+      ...KillModalDeadPerson
+    }
+  }
+  ${KillModalDeadPersonFragmentDoc}
+`;
+export type KillModalKillGuestMutationMutationFn = Apollo.MutationFunction<
+  KillModalKillGuestMutation,
+  KillModalKillGuestMutationVariables
+>;
 
 /**
  * __useKillModalKillGuestMutation__
@@ -44,10 +57,25 @@ export type KillModalKillGuestMutationMutationFn = Apollo.MutationFunction<KillM
  *   },
  * });
  */
-export function useKillModalKillGuestMutation(baseOptions?: Apollo.MutationHookOptions<KillModalKillGuestMutation, KillModalKillGuestMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<KillModalKillGuestMutation, KillModalKillGuestMutationVariables>(KillModalKillGuestMutationDocument, options);
-      }
-export type KillModalKillGuestMutationHookResult = ReturnType<typeof useKillModalKillGuestMutation>;
-export type KillModalKillGuestMutationMutationResult = Apollo.MutationResult<KillModalKillGuestMutation>;
-export type KillModalKillGuestMutationMutationOptions = Apollo.BaseMutationOptions<KillModalKillGuestMutation, KillModalKillGuestMutationVariables>;
+export function useKillModalKillGuestMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    KillModalKillGuestMutation,
+    KillModalKillGuestMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    KillModalKillGuestMutation,
+    KillModalKillGuestMutationVariables
+  >(KillModalKillGuestMutationDocument, options);
+}
+export type KillModalKillGuestMutationHookResult = ReturnType<
+  typeof useKillModalKillGuestMutation
+>;
+export type KillModalKillGuestMutationMutationResult =
+  Apollo.MutationResult<KillModalKillGuestMutation>;
+export type KillModalKillGuestMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    KillModalKillGuestMutation,
+    KillModalKillGuestMutationVariables
+  >;

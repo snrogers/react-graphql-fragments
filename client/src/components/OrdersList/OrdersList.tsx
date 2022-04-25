@@ -5,9 +5,8 @@ import OrdersListItem from "./OrdersListItem";
 
 type OrdersListProps = {
   orderIds: string[];
-}
+};
 const OrdersList: FC<OrdersListProps> = ({ orderIds }) => {
-
   return (
     <div>
       {orderIds.map((orderId) => (
@@ -18,4 +17,3 @@ const OrdersList: FC<OrdersListProps> = ({ orderIds }) => {
 };
 
 export default OrdersList;
-

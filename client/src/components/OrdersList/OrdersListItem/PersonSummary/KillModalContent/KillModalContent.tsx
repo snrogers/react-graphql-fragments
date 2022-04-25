@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { IonButton, IonContent, IonSpinner, IonToast, useIonToast } from "@ionic/react";
+import {
+  IonButton,
+  IonContent,
+  IonSpinner,
+  IonToast,
+  useIonToast,
+} from "@ionic/react";
 
 import { useKillModalKillGuestMutation } from "./KillModalContent.graphql.generated";
 

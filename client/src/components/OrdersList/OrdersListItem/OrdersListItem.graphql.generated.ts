@@ -1,33 +1,49 @@
-import * as Types from '../../../generated/graphql';
+import * as Types from "../../../generated/graphql";
 
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-const defaultOptions =  {}
-export type OrdersListItemOrderFragment = { __typename?: 'Order', id: string, createdAt: number, table: { __typename?: 'Table', id: string } };
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
+const defaultOptions = {};
+export type OrdersListItemOrderFragment = {
+  __typename?: "Order";
+  id: string;
+  createdAt: number;
+  table: { __typename?: "Table"; id: string };
+};
 
 export type OrdersListItemQueryVariables = Types.Exact<{
-  orderId: Types.Scalars['ID'];
+  orderId: Types.Scalars["ID"];
 }>;
 
-
-export type OrdersListItemQuery = { __typename?: 'Query', orderById?: { __typename?: 'Order', id: string, createdAt: number, table: { __typename?: 'Table', id: string } } | null | undefined };
+export type OrdersListItemQuery = {
+  __typename?: "Query";
+  orderById?:
+    | {
+        __typename?: "Order";
+        id: string;
+        createdAt: number;
+        table: { __typename?: "Table"; id: string };
+      }
+    | null
+    | undefined;
+};
 
 export const OrdersListItemOrderFragmentDoc = gql`
-    fragment OrdersListItemOrder on Order {
-  id
-  createdAt
-  table {
+  fragment OrdersListItemOrder on Order {
     id
+    createdAt
+    table {
+      id
+    }
   }
-}
-    `;
+`;
 export const OrdersListItemQueryDocument = gql`
-    query OrdersListItemQuery($orderId: ID!) {
-  orderById(id: $orderId) {
-    ...OrdersListItemOrder
+  query OrdersListItemQuery($orderId: ID!) {
+    orderById(id: $orderId) {
+      ...OrdersListItemOrder
+    }
   }
-}
-    ${OrdersListItemOrderFragmentDoc}`;
+  ${OrdersListItemOrderFragmentDoc}
+`;
 
 /**
  * __useOrdersListItemQuery__
@@ -45,14 +61,37 @@ export const OrdersListItemQueryDocument = gql`
  *   },
  * });
  */
-export function useOrdersListItemQuery(baseOptions: Apollo.QueryHookOptions<OrdersListItemQuery, OrdersListItemQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OrdersListItemQuery, OrdersListItemQueryVariables>(OrdersListItemQueryDocument, options);
-      }
-export function useOrdersListItemQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrdersListItemQuery, OrdersListItemQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OrdersListItemQuery, OrdersListItemQueryVariables>(OrdersListItemQueryDocument, options);
-        }
-export type OrdersListItemQueryHookResult = ReturnType<typeof useOrdersListItemQuery>;
-export type OrdersListItemQueryLazyQueryHookResult = ReturnType<typeof useOrdersListItemQueryLazyQuery>;
-export type OrdersListItemQueryQueryResult = Apollo.QueryResult<OrdersListItemQuery, OrdersListItemQueryVariables>;
+export function useOrdersListItemQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    OrdersListItemQuery,
+    OrdersListItemQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<OrdersListItemQuery, OrdersListItemQueryVariables>(
+    OrdersListItemQueryDocument,
+    options
+  );
+}
+export function useOrdersListItemQueryLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    OrdersListItemQuery,
+    OrdersListItemQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<OrdersListItemQuery, OrdersListItemQueryVariables>(
+    OrdersListItemQueryDocument,
+    options
+  );
+}
+export type OrdersListItemQueryHookResult = ReturnType<
+  typeof useOrdersListItemQuery
+>;
+export type OrdersListItemQueryLazyQueryHookResult = ReturnType<
+  typeof useOrdersListItemQueryLazyQuery
+>;
+export type OrdersListItemQueryQueryResult = Apollo.QueryResult<
+  OrdersListItemQuery,
+  OrdersListItemQueryVariables
+>;
